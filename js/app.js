@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. B2B Trade Inquiry Form Submission
+  // 2. B2B Trade Inquiry Form Submission via FormSubmit AJAX Endpoint
   const tradeForm = document.getElementById('trade-inquiry-form');
   const formFeedback = document.getElementById('form-feedback');
 
@@ -38,14 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       
       const submitBtn = tradeForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Send Email';
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Sending Inquiry...';
+        submitBtn.innerHTML = 'Sending Email...';
       }
 
-      setTimeout(() => {
+      const formData = new FormData(tradeForm);
+
+      fetch('https://formsubmit.co/ajax/rehancodeofficial@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Accept': 'application/json'
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalText;
@@ -55,12 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
           formFeedback.className = 'form-feedback success';
           formFeedback.innerHTML = `
             <strong>Inquiry Sent Successfully!</strong><br/>
-            Thank you for contacting Nova Fresh International. Victor A. Johnson and our international trade desk will review your inquiry and respond to your email within 24 hours.
+            Your message has been emailed directly to <strong>rehancodeofficial@gmail.com</strong>.<br/>
+            <small style="display:inline-block; margin-top:4px; opacity:0.9;">(Note: On the first test email, check <u>rehancodeofficial@gmail.com</u> inbox/spam to click "Activate Form" if required by FormSubmit).</small>
           `;
         }
 
         tradeForm.reset();
-      }, 700);
+      })
+      .catch(error => {
+        console.error('Email send error:', error);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+        // Fallback to direct form submit
+        tradeForm.submit();
+      });
     });
   }
 
