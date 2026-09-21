@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. B2B Trade Inquiry Form Submission via FormSubmit AJAX Endpoint
+  // 2. B2B Trade Inquiry Form Submission via FormSubmit
   const tradeForm = document.getElementById('trade-inquiry-form');
   const formFeedback = document.getElementById('form-feedback');
 
@@ -56,29 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(response => response.json())
       .then(data => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        }
+        console.log('FormSubmit response:', data);
 
-        if (formFeedback) {
-          formFeedback.className = 'form-feedback success';
-          formFeedback.innerHTML = `
-            <strong>Inquiry Sent Successfully!</strong><br/>
-            Your message has been emailed directly to <strong>rehancodeofficial@gmail.com</strong>.<br/>
-            <small style="display:inline-block; margin-top:4px; opacity:0.9;">(Note: On the first test email, check <u>rehancodeofficial@gmail.com</u> inbox/spam to click "Activate Form" if required by FormSubmit).</small>
-          `;
-        }
+        if (data.success === "true" || data.success === true) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }
 
-        tradeForm.reset();
+          if (formFeedback) {
+            formFeedback.className = 'form-feedback success';
+            formFeedback.innerHTML = `
+              <strong>Inquiry Sent Successfully!</strong><br/>
+              Your message has been emailed directly to <strong>rehancodeofficial@gmail.com</strong>.
+            `;
+          }
+          tradeForm.reset();
+        } else {
+          // If AJAX is restricted or activation is required, submit natively
+          tradeForm.submit();
+        }
       })
       .catch(error => {
         console.error('Email send error:', error);
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        }
-        // Fallback to direct form submit
         tradeForm.submit();
       });
     });
