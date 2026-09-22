@@ -1,10 +1,10 @@
 /**
  * Nova Fresh International — Application Logic
- * Standard Vanilla JS for Navigation Drawer, Smooth Scrolling, and AJAX Inquiry Form
+ * Vanilla JavaScript for Mobile Navigation Drawer and Inquiry Form Submission
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Drawer Toggle
+  // 1. Mobile Navigation Drawer Toggle
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
 
@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       
       const submitBtn = tradeForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      const originalBtnText = submitBtn ? submitBtn.textContent : 'Submit Commercial Inquiry';
       
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Sending Message...</span>';
+        submitBtn.textContent = 'Submitting Inquiry...';
       }
 
       if (formFeedback) {
@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = Object.fromEntries(formData.entries());
 
       try {
-        // Post directly to FormSubmit AJAX endpoint
         const response = await fetch('https://formsubmit.co/ajax/mjohnson@novafreshintl.com', {
           method: 'POST',
           headers: {
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: 'New Trade Inquiry - Nova Fresh International',
+            _subject: 'New Commercial Trade Inquiry - Nova Fresh International',
             _captcha: 'false',
             name: data.name,
             company: data.company,
@@ -78,50 +77,48 @@ document.addEventListener('DOMContentLoaded', () => {
           if (formFeedback) {
             formFeedback.className = 'form-feedback success';
             formFeedback.style.display = 'block';
-            formFeedback.innerHTML = '<strong>Message Sent Successfully!</strong><br />Thank you for reaching out to Nova Fresh International. Milton A. Johnson will get back to you shortly.';
+            formFeedback.innerHTML = '<strong>Inquiry Submitted Successfully</strong><br />Thank you for reaching out to Nova Fresh International. Milton A. Johnson will review your details and respond promptly.';
           }
           tradeForm.reset();
         } else {
-          throw new Error('Form submission failed with status ' + response.status);
+          throw new Error('Submission endpoint returned status ' + response.status);
         }
       } catch (error) {
         console.error('Form submission error:', error);
         if (formFeedback) {
           formFeedback.className = 'form-feedback error';
           formFeedback.style.display = 'block';
-          formFeedback.innerHTML = '<strong>Submission Failed.</strong><br />Unable to send your inquiry right now. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit;">mjohnson@novafreshintl.com</a> or call +1 562 201 7771.';
+          formFeedback.innerHTML = '<strong>Submission Failed</strong><br />Unable to send your inquiry automatically. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit;">mjohnson@novafreshintl.com</a> or call +1 562 201 7771.';
         }
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
+          submitBtn.textContent = originalBtnText;
         }
       }
     });
   }
 
-  // 3. Highlight Active Link on Scroll
-  const sections = document.querySelectorAll('section[id], div[id].section-bar-header, div[id].about-section-container');
+  // 3. Highlight Active Navigation Link on Scroll
+  const sectionBars = document.querySelectorAll('.section-bar-header[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPosition = window.scrollY + 120;
+    const scrollPosition = window.scrollY + 140;
 
-    sections.forEach(section => {
+    sectionBars.forEach(section => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      if (scrollPosition >= sectionTop) {
         current = section.getAttribute('id');
       }
     });
 
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
+      if (current && link.getAttribute('href') === `#${current}`) {
         link.classList.add('active');
       }
     });
   });
 });
-

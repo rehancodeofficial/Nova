@@ -1,37 +1,57 @@
 /* ==========================================================================
    Nova Fresh International — Main Stylesheet
-   Verbatim Content & Visual Alignment with Google Sites Reference Page
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  /* Brand Greens */
-  --color-primary-bar: #0F6B56;     /* Exact Reference Dark Teal Green Header Bar */
+  /* Original Brand Greens */
+  --color-primary-bar: #0F6B56;     /* Dark Teal Green Header Bar */
   --color-primary-dark: #0B4A3C;    /* Deep Forest Green */
   --color-primary-leaf: #2D6A4F;    /* Fresh Leaf Green */
   --color-accent-soft: #E8F5E9;     /* Light Leaf Tint */
-  --color-location-blue: #0056B3;   /* Blue link text for location/tags in cards */
+  --color-location-blue: #0056B3;   /* Blue Link Accent */
 
-  /* Backgrounds */
-  --color-bg-white: #FFFFFF;        /* Pure Crisp White Background */
-  --color-bg-surface: #F8FAF8;      /* Off-White Surface */
-  --color-bg-alt: #F1F5F2;          /* Subtle Sage Tint */
+  /* Primary Palette */
+  --color-primary-navy: #0B4A3C;       
+  --color-primary-accent: #0F6B56;     
+  --color-brass-accent: #A28247;       
+  
+  /* Backgrounds & Surface Layers */
+  --color-bg-base: #FFFFFF;
+  --color-bg-subtle: #F8F7F4;          /* Warm Muted Neutral Background */
+  --color-bg-muted: #EFECE6;           /* Table Header & Bar Background */
+  --color-bg-dark: #0B4A3C;           /* Dark Header & Footer Surface */
+  
+  /* Typography Colors */
+  --color-text-main: #16201B;          /* Primary Body Text */
+  --color-text-muted: #515E56;        /* Secondary Muted Text */
+  --color-text-light: #DCE5E0;        /* Light Text on Dark Surfaces */
+  --color-text-inverse: #FFFFFF;
 
-  /* Typography */
-  --color-text-main: #1D2A23;       /* Charcoal Text */
-  --color-text-muted: #4A5D52;      /* Muted Green-Gray Text */
-  --color-border-light: #E2E8F0;    /* Soft Divider Border */
-  --color-border-green: #B7E4C7;
+  /* Borders & Dividers */
+  --color-border: #DBD7CD;             /* Crisp Fine Neutral Border */
+  --color-border-subtle: #EBE8E0;      /* Light Table/List Divider */
+  --color-border-dark: #1F5A4B;
 
-  /* Dimensions & Shadows */
+  /* State Colors */
+  --color-success-bg: #EAF5F0;
+  --color-success-text: #1C4D38;
+  --color-success-border: #B8E0CC;
+  --color-error-bg: #FDF2F2;
+  --color-error-text: #8A2425;
+  --color-error-border: #F4C4C4;
+
+  /* Dimensions & Radius */
   --container-max-width: 1180px;
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 12px;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 14px rgba(15, 107, 86, 0.08);
-  --shadow-hover: 0 8px 24px rgba(15, 107, 86, 0.12);
 
-  --transition-fast: 0.15s ease;
+  /* Typography & Layout */
+  --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: 'Newsreader', Georgia, serif;
 }
 
 *, *::before, *::after {
@@ -47,10 +67,11 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family-body);
   color: var(--color-text-main);
-  background-color: var(--color-bg-white);
+  background-color: var(--color-bg-base);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -72,7 +93,7 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Top Utility Bar
+   Top Utility Bar (Original Style)
    -------------------------------------------------------------------------- */
 .topbar {
   background-color: var(--color-primary-dark);
@@ -107,14 +128,14 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Header Navigation
+   Header Navigation (Original Style)
    -------------------------------------------------------------------------- */
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #FFFFFF;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
   height: 76px;
   display: flex;
@@ -172,7 +193,7 @@ img {
   font-weight: 600;
   color: var(--color-text-main);
   padding: 6px 0;
-  transition: color var(--transition-fast);
+  transition: color 0.15s ease;
 }
 
 .nav-link:hover,
@@ -187,7 +208,7 @@ img {
   font-size: 0.85rem;
   padding: 10px 18px;
   border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast);
+  transition: background-color 0.15s ease;
 }
 
 .nav-cta:hover {
@@ -228,7 +249,7 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section (Reference Banner Style)
+   Hero Section (Original Style)
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -314,7 +335,7 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Green Reference Section Header Bar
+   Section Headers & Structural Dividers
    -------------------------------------------------------------------------- */
 .section-bar-header {
   background-color: var(--color-primary-bar);
@@ -332,384 +353,413 @@ img {
 }
 
 .section-alt {
-  background-color: var(--color-bg-surface);
-  border-top: 1px solid var(--color-border-light);
-  border-bottom: 1px solid var(--color-border-light);
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* --------------------------------------------------------------------------
-   Two-Sided Marketplace (Producers/Exporters vs Importers/Buyers)
-   -------------------------------------------------------------------------- */
-.marketplace-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+.section-intro {
+  margin-bottom: 40px;
+  max-width: 840px;
 }
 
-.marketplace-card {
-  background-color: #FFFFFF;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.marketplace-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-}
-
-.marketplace-card.exporter-side {
-  border-top: 6px solid var(--color-primary-leaf);
-}
-
-.marketplace-card.buyer-side {
-  border-top: 6px solid #0056B3;
-}
-
-.marketplace-card-header {
-  padding: 28px 28px 16px 28px;
-  border-bottom: 1px solid var(--color-border-light);
-  background-color: #FAFCFA;
-}
-
-.marketplace-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.section-kicker {
   font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 4px;
+  color: var(--color-brass-accent);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.2;
   margin-bottom: 12px;
 }
 
-.exporter-side .marketplace-badge {
-  background-color: var(--color-accent-soft);
+.section-subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Produce Commodity Sourcing Matrix (Table)
+   -------------------------------------------------------------------------- */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #FFFFFF;
+}
+
+.trade-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.trade-matrix-table th {
+  background-color: var(--color-bg-muted);
   color: var(--color-primary-dark);
-  border: 1px solid var(--color-border-green);
+  font-weight: 700;
+  font-size: 0.78125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.buyer-side .marketplace-badge {
-  background-color: #E6F0FA;
-  color: #004085;
-  border: 1px solid #B8DAFF;
+.trade-matrix-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-text-main);
+  vertical-align: top;
 }
 
-.marketplace-card-title {
-  font-size: 1.5rem;
+.trade-matrix-table tr:last-child td {
+  border-bottom: none;
+}
+
+.trade-matrix-table tr:hover td {
+  background-color: var(--color-bg-subtle);
+}
+
+.commodity-name {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  display: block;
+}
+
+.commodity-variety {
+  font-size: 0.78125rem;
+  color: var(--color-text-muted);
+}
+
+.tag-spec {
+  display: inline-block;
+  background-color: var(--color-bg-muted);
+  color: var(--color-primary-leaf);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   Two-Sided Marketplace (Exporters & Importers Layout)
+   -------------------------------------------------------------------------- */
+.marketplace-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.marketplace-column {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.marketplace-column-header {
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.role-badge {
+  font-size: 0.75rem;
   font-weight: 800;
-  color: var(--color-primary-dark);
-  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-leaf);
+  margin-bottom: 8px;
 }
 
-.marketplace-card-desc {
-  font-size: 0.92rem;
+.role-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 8px;
+}
+
+.role-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  list-style: none;
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.service-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.service-item-heading {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  font-size: 0.9375rem;
+}
+
+.service-item-text {
+  font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.5;
 }
 
-.marketplace-card-body {
-  padding: 24px 28px 28px 28px;
-  flex-grow: 1;
-}
-
-.marketplace-subheading {
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-text-main);
-  letter-spacing: 0.04em;
-  margin-bottom: 16px;
-}
-
-.marketplace-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.marketplace-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: var(--color-text-main);
-  line-height: 1.45;
-}
-
-.marketplace-list-item svg {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.exporter-side .marketplace-list-item svg {
-  stroke: var(--color-primary-bar);
-}
-
-.buyer-side .marketplace-list-item svg {
-  stroke: #0056B3;
-}
-
-.marketplace-list-item strong {
-  font-weight: 700;
-  color: var(--color-primary-dark);
-}
-
 /* --------------------------------------------------------------------------
-   Trade & Market Support Grid (5 Pillars)
+   Operational Trade Support Workflow
    -------------------------------------------------------------------------- */
-.trade-support-grid {
+.workflow-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
 
-.trade-support-card {
+.workflow-step {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 24px;
-  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
-.trade-support-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border-green);
+.workflow-num {
+  font-family: var(--font-family-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-bar);
+  line-height: 1;
 }
 
-.trade-support-icon-wrap {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-accent-soft);
-  color: var(--color-primary-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.trade-support-title {
-  font-size: 1.15rem;
-  font-weight: 800;
+.workflow-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
   color: var(--color-primary-dark);
 }
 
-.trade-support-desc {
-  font-size: 0.9rem;
+.workflow-desc {
+  font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.55;
 }
 
 /* --------------------------------------------------------------------------
-   About Me & Regional Offices Section
+   Leadership Bio & Regional Offices Layout
    -------------------------------------------------------------------------- */
-.about-section-container {
-  padding: 64px 0;
-}
-
-.about-header-title {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--color-primary-dark);
-  margin-bottom: 40px;
-}
-
-.about-dual-grid {
+.about-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
+  gap: 44px;
   align-items: start;
 }
 
-/* Left Column Bio Card */
-.founder-card {
+.bio-card {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.bio-header {
+  display: flex;
   align-items: center;
-  text-align: center;
-  gap: 16px;
+  gap: 20px;
 }
 
-.founder-card-heading {
-  font-size: 1.4rem;
-  font-weight: 800;
+.bio-portrait {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-accent-soft);
+  flex-shrink: 0;
+}
+
+.bio-name {
+  font-family: var(--font-family-heading);
+  font-size: 1.625rem;
+  font-weight: 700;
   color: var(--color-primary-dark);
+  line-height: 1.2;
 }
 
-.founder-bio-text {
-  font-size: 0.95rem;
-  color: var(--color-text-main);
-  line-height: 1.65;
-  text-align: justify;
-}
-
-.founder-signature {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--color-primary-dark);
+.bio-title-role {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-primary-leaf);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-top: 4px;
 }
 
-.founder-portrait-img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--color-accent-soft);
-  box-shadow: var(--shadow-md);
-  margin: 8px 0;
+.bio-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+  line-height: 1.65;
 }
 
-.founder-contact-btn {
-  display: inline-block;
-  background-color: var(--color-primary-bar);
-  color: #FFFFFF;
-  font-size: 0.85rem;
+.bio-direct-contact {
+  font-size: 0.875rem;
   font-weight: 700;
-  padding: 10px 20px;
-  border-radius: 50px;
-  transition: background-color var(--transition-fast);
+  color: var(--color-primary-dark);
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-subtle);
 }
 
-.founder-contact-btn:hover {
-  background-color: var(--color-primary-dark);
-}
-
-/* Right Column Offices */
-.offices-panel {
+.offices-column {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.office-card {
+.office-box {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  border-left: 5px solid var(--color-primary-bar);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 24px;
   box-shadow: var(--shadow-sm);
 }
 
-.office-name {
-  font-size: 1.15rem;
+.office-region {
+  font-size: 0.75rem;
   font-weight: 800;
-  color: var(--color-primary-dark);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-leaf);
   margin-bottom: 6px;
+}
+
+.office-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 8px;
 }
 
 .office-address {
-  font-size: 0.92rem;
-  color: var(--color-text-main);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
   line-height: 1.5;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
-.office-contact {
-  font-size: 0.88rem;
+.office-contact-link {
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-location-blue);
 }
 
 /* --------------------------------------------------------------------------
-   Contact Form Section
+   Direct Trade Desk Contact Form Section
    -------------------------------------------------------------------------- */
-.contact-grid {
+.contact-layout {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 48px;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 44px;
   align-items: start;
 }
 
-.contact-info-panel {
+.contact-meta-panel {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-.contact-item {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.contact-icon {
-  width: 40px;
-  height: 40px;
-  background-color: var(--color-accent-soft);
-  color: var(--color-primary-dark);
+.contact-direct-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+  padding: 28px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
 }
 
-.contact-item-title {
-  font-size: 0.82rem;
-  font-weight: 700;
+.meta-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
-.contact-item-value {
-  font-size: 0.98rem;
+.meta-value {
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--color-primary-dark);
 }
 
-.contact-form-panel {
+.contact-form-card {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: 36px;
   box-shadow: var(--shadow-md);
 }
 
+.form-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .form-title {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-family: var(--font-family-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--color-primary-dark);
   margin-bottom: 6px;
 }
 
 .form-subtitle {
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   color: var(--color-text-muted);
-  margin-bottom: 24px;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 18px;
+  margin-bottom: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .form-group.full-width {
@@ -717,7 +767,7 @@ img {
 }
 
 .form-label {
-  font-size: 0.82rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-text-main);
 }
@@ -727,10 +777,13 @@ img {
 .form-textarea {
   width: 100%;
   padding: 10px 14px;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   color: var(--color-text-main);
+  font-family: var(--font-family-body);
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .form-input:focus,
@@ -743,7 +796,7 @@ img {
 
 .form-textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 110px;
 }
 
 .form-submit-btn {
@@ -752,10 +805,10 @@ img {
 }
 
 .form-feedback {
-  margin-top: 14px;
-  padding: 12px 16px;
-  border-radius: var(--radius-md);
-  font-size: 0.88rem;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5;
   display: none;
@@ -763,67 +816,69 @@ img {
 
 .form-feedback.success {
   display: block;
-  background-color: #D8F3DC;
-  color: #1B4332;
-  border: 1px solid #B7E4C7;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
 }
 
 .form-feedback.error {
   display: block;
-  background-color: #F8D7DA;
-  color: #721C24;
-  border: 1px solid #F5C6CB;
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  border: 1px solid var(--color-error-border);
 }
-
 
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 .footer {
   background-color: var(--color-primary-dark);
-  color: #D8E2DC;
-  padding: 48px 0 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-text-light);
+  padding: 56px 0 28px 0;
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 36px;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .footer-brand-title {
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-family: var(--font-family-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .footer-brand-desc {
-  font-size: 0.85rem;
-  color: #B7C9BE;
+  font-size: 0.84375rem;
+  color: var(--color-text-light);
   line-height: 1.6;
 }
 
 .footer-col-title {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.78125rem;
+  font-weight: 800;
   text-transform: uppercase;
-  color: #FFFFFF;
-  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+  color: #74C69D;
+  margin-bottom: 16px;
 }
 
 .footer-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .footer-link {
-  font-size: 0.85rem;
-  color: #B7C9BE;
+  font-size: 0.84375rem;
+  color: var(--color-text-light);
+  transition: color 0.15s ease;
 }
 
 .footer-link:hover {
@@ -832,79 +887,70 @@ img {
 
 .footer-bottom {
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-border-dark);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8rem;
-  color: #95A99C;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
 }
 
 /* --------------------------------------------------------------------------
-   Mobile Responsive Breakpoints
+   Responsive Design
    -------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .services-3col-grid {
+@media (max-width: 992px) {
+  .marketplace-two-col,
+  .about-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .workflow-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .trade-support-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .about-dual-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
+
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .topbar-info {
-    display: none;
+  .header-container {
+    padding: 0 16px;
   }
-  .topbar-content {
-    justify-content: center;
-  }
-  .header {
-    height: 70px;
-  }
+
   .nav-menu, .nav-cta {
     display: none;
   }
+
   .mobile-toggle {
     display: block;
   }
+
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.25rem;
   }
-  .hero-subtitle {
-    font-size: 1.05rem;
+
+  .section-title {
+    font-size: 1.75rem;
   }
-  .marketplace-grid {
+
+  .workflow-grid {
     grid-template-columns: 1fr;
   }
-  .trade-support-grid {
-    grid-template-columns: 1fr;
-  }
-  .services-3col-grid {
-    grid-template-columns: 1fr;
-  }
+
   .form-grid {
     grid-template-columns: 1fr;
   }
+
   .form-group.full-width {
     grid-column: span 1;
   }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
 }
-
