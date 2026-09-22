@@ -554,6 +554,17 @@ img {
   line-height: 1.65;
 }
 
+.about-rep-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background-color: var(--color-accent-soft);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-green);
+  display: inline-block;
+}
+
 .about-direct-contact {
   font-size: 0.92rem;
   font-weight: 700;
