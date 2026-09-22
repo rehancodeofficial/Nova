@@ -1,57 +1,43 @@
 /* ==========================================================================
    Nova Fresh International — Main Stylesheet
+   Clean, Professional & Focused One-Page Landing Page
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Original Brand Greens */
+  /* Brand Greens */
   --color-primary-bar: #0F6B56;     /* Dark Teal Green Header Bar */
   --color-primary-dark: #0B4A3C;    /* Deep Forest Green */
   --color-primary-leaf: #2D6A4F;    /* Fresh Leaf Green */
   --color-accent-soft: #E8F5E9;     /* Light Leaf Tint */
-  --color-location-blue: #0056B3;   /* Blue Link Accent */
+  --color-location-blue: #0056B3;   /* Blue Accent */
 
-  /* Primary Palette */
-  --color-primary-navy: #0B4A3C;       
-  --color-primary-accent: #0F6B56;     
-  --color-brass-accent: #A28247;       
-  
-  /* Backgrounds & Surface Layers */
-  --color-bg-base: #FFFFFF;
-  --color-bg-subtle: #F8F7F4;          /* Warm Muted Neutral Background */
-  --color-bg-muted: #EFECE6;           /* Table Header & Bar Background */
-  --color-bg-dark: #0B4A3C;           /* Dark Header & Footer Surface */
-  
+  /* Backgrounds */
+  --color-bg-white: #FFFFFF;
+  --color-bg-surface: #F8FAF8;      /* Off-White Warm Surface */
+  --color-bg-alt: #F1F5F2;          /* Subtle Sage Tint */
+
   /* Typography Colors */
-  --color-text-main: #16201B;          /* Primary Body Text */
-  --color-text-muted: #515E56;        /* Secondary Muted Text */
-  --color-text-light: #DCE5E0;        /* Light Text on Dark Surfaces */
-  --color-text-inverse: #FFFFFF;
+  --color-text-main: #1C2822;       /* Deep Charcoal Body Text */
+  --color-text-muted: #4A5D52;      /* Muted Green-Gray Secondary Text */
+  --color-text-light: #E2E8F0;
+  --color-border-light: #E2E8F0;    /* Soft Divider Border */
+  --color-border-green: #B7E4C7;
 
-  /* Borders & Dividers */
-  --color-border: #DBD7CD;             /* Crisp Fine Neutral Border */
-  --color-border-subtle: #EBE8E0;      /* Light Table/List Divider */
-  --color-border-dark: #1F5A4B;
-
-  /* State Colors */
-  --color-success-bg: #EAF5F0;
-  --color-success-text: #1C4D38;
-  --color-success-border: #B8E0CC;
-  --color-error-bg: #FDF2F2;
-  --color-error-text: #8A2425;
-  --color-error-border: #F4C4C4;
-
-  /* Dimensions & Radius */
-  --container-max-width: 1180px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 14px rgba(15, 107, 86, 0.08);
-
-  /* Typography & Layout */
+  /* Fonts & Sizing */
   --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-family-heading: 'Newsreader', Georgia, serif;
+
+  --container-max-width: 1140px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 20px rgba(11, 74, 60, 0.08);
+
+  --transition-fast: 0.15s ease;
 }
 
 *, *::before, *::after {
@@ -69,7 +55,7 @@ html {
 body {
   font-family: var(--font-family-body);
   color: var(--color-text-main);
-  background-color: var(--color-bg-base);
+  background-color: var(--color-bg-white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -93,13 +79,13 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Top Utility Bar (Original Style)
+   Top Utility Bar
    -------------------------------------------------------------------------- */
 .topbar {
   background-color: var(--color-primary-dark);
   color: #E2E8F0;
   font-size: 0.85rem;
-  padding: 8px 0;
+  padding: 9px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -107,35 +93,40 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .topbar-info {
   display: flex;
   align-items: center;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
 .topbar-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-weight: 500;
 }
 
 .topbar-item svg {
   width: 14px;
   height: 14px;
   stroke: #74C69D;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
-   Header Navigation (Original Style)
+   Header & Main Navigation
    -------------------------------------------------------------------------- */
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: #FFFFFF;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-light);
   box-shadow: var(--shadow-sm);
   height: 76px;
   display: flex;
@@ -156,35 +147,38 @@ img {
 }
 
 .brand-logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background-color: var(--color-primary-bar);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
+  flex-shrink: 0;
 }
 
 .brand-title {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-primary-dark);
   line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .brand-subtitle {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary-leaf);
+  margin-top: 2px;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   list-style: none;
 }
 
@@ -193,7 +187,7 @@ img {
   font-weight: 600;
   color: var(--color-text-main);
   padding: 6px 0;
-  transition: color 0.15s ease;
+  transition: color var(--transition-fast);
 }
 
 .nav-link:hover,
@@ -208,7 +202,7 @@ img {
   font-size: 0.85rem;
   padding: 10px 18px;
   border-radius: var(--radius-md);
-  transition: background-color 0.15s ease;
+  transition: background-color var(--transition-fast);
 }
 
 .nav-cta:hover {
@@ -249,13 +243,13 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section (Original Style)
+   1. Hero Section
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
   background-color: var(--color-primary-dark);
   color: #FFFFFF;
-  padding: 96px 0;
+  padding: 80px 0 92px 0;
   text-align: center;
   overflow: hidden;
   border-bottom: 4px solid var(--color-primary-bar);
@@ -270,50 +264,67 @@ img {
   background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-  opacity: 0.3;
+  opacity: 0.25;
   filter: brightness(0.6);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 860px;
+  max-width: 920px;
   margin: 0 auto;
 }
 
-.hero-title {
-  font-size: 3.2rem;
-  font-weight: 800;
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(45, 106, 79, 0.85);
   color: #FFFFFF;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #D8F3DC;
   line-height: 1.5;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
+  padding: 12px 26px;
   font-weight: 700;
   font-size: 0.92rem;
   border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .btn-primary {
@@ -322,7 +333,7 @@ img {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary-leaf);
 }
 
 .btn-secondary {
@@ -335,425 +346,323 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Section Headers & Structural Dividers
+   Section Structural Framework
    -------------------------------------------------------------------------- */
-.section-bar-header {
-  background-color: var(--color-primary-bar);
-  color: #FFFFFF;
-  text-align: center;
-  padding: 14px 20px;
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .section {
-  padding: 56px 0;
+  padding: 64px 0;
 }
 
 .section-alt {
-  background-color: var(--color-bg-subtle);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .section-intro {
-  margin-bottom: 40px;
-  max-width: 840px;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 44px auto;
 }
 
 .section-kicker {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brass-accent);
-  margin-bottom: 8px;
+  color: var(--color-primary-leaf);
+  margin-bottom: 6px;
+  display: block;
 }
 
 .section-title {
   font-family: var(--font-family-heading);
-  font-size: 2.25rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 1.25;
+  margin-bottom: 10px;
 }
 
 .section-subtitle {
-  font-size: 1.0625rem;
+  font-size: 1.05rem;
   color: var(--color-text-muted);
   line-height: 1.6;
 }
 
 /* --------------------------------------------------------------------------
-   Produce Commodity Sourcing Matrix (Table)
+   2. International Market Positioning Section
    -------------------------------------------------------------------------- */
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+.section-positioning {
   background-color: #FFFFFF;
+  padding: 56px 0;
 }
 
-.trade-matrix-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.875rem;
-}
-
-.trade-matrix-table th {
-  background-color: var(--color-bg-muted);
-  color: var(--color-primary-dark);
-  font-weight: 700;
-  font-size: 0.78125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.trade-matrix-table td {
-  padding: 16px 18px;
-  border-bottom: 1px solid var(--color-border-subtle);
-  color: var(--color-text-main);
-  vertical-align: top;
-}
-
-.trade-matrix-table tr:last-child td {
-  border-bottom: none;
-}
-
-.trade-matrix-table tr:hover td {
-  background-color: var(--color-bg-subtle);
-}
-
-.commodity-name {
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  display: block;
-}
-
-.commodity-variety {
-  font-size: 0.78125rem;
-  color: var(--color-text-muted);
-}
-
-.tag-spec {
-  display: inline-block;
-  background-color: var(--color-bg-muted);
-  color: var(--color-primary-leaf);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-}
-
-/* --------------------------------------------------------------------------
-   Two-Sided Marketplace (Exporters & Importers Layout)
-   -------------------------------------------------------------------------- */
-.marketplace-two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-}
-
-.marketplace-column {
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 36px;
+.positioning-box {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px;
   box-shadow: var(--shadow-sm);
 }
 
-.marketplace-column-header {
-  padding-bottom: 20px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--color-border);
+.positioning-header {
+  margin-bottom: 16px;
 }
 
-.role-badge {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-primary-leaf);
-  margin-bottom: 8px;
-}
-
-.role-title {
+.positioning-title {
   font-family: var(--font-family-heading);
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
-.role-desc {
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-  line-height: 1.55;
+.positioning-text {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-.service-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  list-style: none;
+.positioning-hubs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 24px;
 }
 
-.service-item {
+.hub-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.service-item:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.service-item-heading {
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  font-size: 0.9375rem;
-}
-
-.service-item-text {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-/* --------------------------------------------------------------------------
-   Operational Trade Support Workflow
-   -------------------------------------------------------------------------- */
-.workflow-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.workflow-step {
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: var(--shadow-sm);
-}
-
-.workflow-num {
-  font-family: var(--font-family-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-primary-bar);
-  line-height: 1;
-}
-
-.workflow-title {
-  font-size: 1.0625rem;
-  font-weight: 700;
+.hub-region {
+  font-size: 0.95rem;
+  font-weight: 800;
   color: var(--color-primary-dark);
 }
 
-.workflow-desc {
-  font-size: 0.875rem;
+.hub-detail {
+  font-size: 0.88rem;
   color: var(--color-text-muted);
-  line-height: 1.55;
 }
 
 /* --------------------------------------------------------------------------
-   Leadership Bio & Regional Offices Layout
+   3. Three Core Services Grid
    -------------------------------------------------------------------------- */
-.about-grid {
+.services-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 44px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
 }
 
-.bio-card {
+.service-card {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
-  padding: 36px;
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  box-shadow: var(--shadow-sm);
+  gap: 16px;
 }
 
-.bio-header {
+.service-icon-box {
+  width: 52px;
+  height: 52px;
+  background-color: var(--color-accent-soft);
+  color: var(--color-primary-dark);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-.bio-portrait {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-accent-soft);
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.bio-name {
+.service-title {
   font-family: var(--font-family-heading);
-  font-size: 1.625rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.3;
+}
+
+.service-body {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. Short About Section (Milton A. Johnson)
+   -------------------------------------------------------------------------- */
+.about-simple-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-portrait-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.about-portrait {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-accent-soft);
+  box-shadow: var(--shadow-md);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-name {
+  font-family: var(--font-family-heading);
+  font-size: 2rem;
   font-weight: 700;
   color: var(--color-primary-dark);
   line-height: 1.2;
 }
 
-.bio-title-role {
-  font-size: 0.875rem;
-  font-weight: 700;
+.about-role {
+  font-size: 0.95rem;
+  font-weight: 800;
   color: var(--color-primary-leaf);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 4px;
+  letter-spacing: 0.06em;
 }
 
-.bio-text {
-  font-size: 0.9375rem;
+.about-bio {
+  font-size: 0.98rem;
   color: var(--color-text-main);
   line-height: 1.65;
 }
 
-.bio-direct-contact {
-  font-size: 0.875rem;
+.about-direct-contact {
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  padding-top: 12px;
-  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-light);
 }
 
-.offices-column {
+.about-direct-contact a {
+  color: var(--color-location-blue);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   5. Contact Section & Form
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.contact-info-side {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.office-box {
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
+.contact-heading {
+  font-family: var(--font-family-heading);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.25;
 }
 
-.office-region {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.contact-desc {
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.contact-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.contact-link-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contact-link-item svg {
+  flex-shrink: 0;
+  margin-top: 3px;
   color: var(--color-primary-leaf);
-  margin-bottom: 6px;
 }
 
-.office-name {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-primary-dark);
-  margin-bottom: 8px;
-}
-
-.office-address {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-
-.office-contact-link {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--color-location-blue);
-}
-
-/* --------------------------------------------------------------------------
-   Direct Trade Desk Contact Form Section
-   -------------------------------------------------------------------------- */
-.contact-layout {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 44px;
-  align-items: start;
-}
-
-.contact-meta-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.contact-direct-card {
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: var(--shadow-sm);
-}
-
-.meta-label {
-  font-size: 0.75rem;
+.contact-link-label {
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--color-text-muted);
 }
 
-.meta-value {
-  font-size: 0.9375rem;
+.contact-link-val {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-primary-dark);
 }
 
-.contact-form-card {
+.contact-link-text {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  line-height: 1.45;
+}
+
+.contact-form-box {
   background-color: #FFFFFF;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
   padding: 36px;
   box-shadow: var(--shadow-md);
 }
 
-.form-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-border);
-}
-
 .form-title {
   font-family: var(--font-family-heading);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .form-subtitle {
-  font-size: 0.875rem;
+  font-size: 0.88rem;
   color: var(--color-text-muted);
+  margin-bottom: 24px;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .form-group {
@@ -767,27 +676,25 @@ img {
 }
 
 .form-label {
-  font-size: 0.8125rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--color-text-main);
 }
 
 .form-input,
-.form-select,
 .form-textarea {
   width: 100%;
   padding: 10px 14px;
-  background-color: var(--color-bg-subtle);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
   color: var(--color-text-main);
   font-family: var(--font-family-body);
-  font-size: 0.875rem;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  font-size: 0.9rem;
+  transition: border-color var(--transition-fast);
 }
 
 .form-input:focus,
-.form-select:focus,
 .form-textarea:focus {
   outline: none;
   border-color: var(--color-primary-bar);
@@ -805,10 +712,10 @@ img {
 }
 
 .form-feedback {
-  margin-top: 16px;
-  padding: 14px 18px;
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
   font-weight: 500;
   line-height: 1.5;
   display: none;
@@ -816,56 +723,56 @@ img {
 
 .form-feedback.success {
   display: block;
-  background-color: var(--color-success-bg);
-  color: var(--color-success-text);
-  border: 1px solid var(--color-success-border);
+  background-color: #D8F3DC;
+  color: #1B4332;
+  border: 1px solid #B7E4C7;
 }
 
 .form-feedback.error {
   display: block;
-  background-color: var(--color-error-bg);
-  color: var(--color-error-text);
-  border: 1px solid var(--color-error-border);
+  background-color: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
 }
 
 /* --------------------------------------------------------------------------
-   Footer
+   6. Footer
    -------------------------------------------------------------------------- */
 .footer {
   background-color: var(--color-primary-dark);
-  color: var(--color-text-light);
-  padding: 56px 0 28px 0;
-  border-top: 1px solid var(--color-border-dark);
+  color: #D8E2DC;
+  padding: 48px 0 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .footer-brand-title {
   font-family: var(--font-family-heading);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .footer-brand-desc {
-  font-size: 0.84375rem;
-  color: var(--color-text-light);
+  font-size: 0.85rem;
   line-height: 1.6;
+  color: #C0D6C8;
 }
 
 .footer-col-title {
-  font-size: 0.78125rem;
+  font-size: 0.8rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #74C69D;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .footer-links {
@@ -876,9 +783,9 @@ img {
 }
 
 .footer-link {
-  font-size: 0.84375rem;
-  color: var(--color-text-light);
-  transition: color 0.15s ease;
+  font-size: 0.85rem;
+  color: #D8E2DC;
+  transition: color var(--transition-fast);
 }
 
 .footer-link:hover {
@@ -887,29 +794,43 @@ img {
 
 .footer-bottom {
   padding-top: 24px;
-  border-top: 1px solid var(--color-border-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
-  font-size: 0.8125rem;
-  color: var(--color-text-light);
+  gap: 12px;
+  font-size: 0.82rem;
+  color: #B0C4B6;
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Design
+   Responsive Design (Mobile, Tablet, Desktop)
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
-  .marketplace-two-col,
-  .about-grid,
-  .contact-layout {
+  .services-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
   }
 
-  .workflow-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .about-simple-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .about-portrait-wrap {
+    justify-content: center;
+  }
+
+  .positioning-hubs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .footer-grid {
@@ -931,15 +852,15 @@ img {
   }
 
   .hero-title {
-    font-size: 2.25rem;
+    font-size: 1.85rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
   }
 
   .section-title {
     font-size: 1.75rem;
-  }
-
-  .workflow-grid {
-    grid-template-columns: 1fr;
   }
 
   .form-grid {

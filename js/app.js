@@ -1,10 +1,10 @@
 /**
  * Nova Fresh International — Application Logic
- * Vanilla JavaScript for Mobile Navigation Drawer and Inquiry Form Submission
+ * Vanilla JS for Mobile Drawer Toggle, FormSubmit AJAX Handling, and Active Scroll Highlighting
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Navigation Drawer Toggle
+  // 1. Mobile Menu Drawer Toggle
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
 
@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       
       const submitBtn = tradeForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.textContent : 'Submit Commercial Inquiry';
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '<span>Send Message to Milton</span>';
       
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting Inquiry...';
+        submitBtn.innerHTML = '<span>Sending Message...</span>';
       }
 
       if (formFeedback) {
@@ -62,13 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: 'New Commercial Trade Inquiry - Nova Fresh International',
+            _subject: 'New Inquiry - Nova Fresh International',
             _captcha: 'false',
             name: data.name,
             company: data.company,
             email: data.email,
             phone: data.phone || 'N/A',
-            stakeholder_type: data.stakeholder_type || 'General',
             message: data.message
           })
         });
@@ -77,39 +76,40 @@ document.addEventListener('DOMContentLoaded', () => {
           if (formFeedback) {
             formFeedback.className = 'form-feedback success';
             formFeedback.style.display = 'block';
-            formFeedback.innerHTML = '<strong>Inquiry Submitted Successfully</strong><br />Thank you for reaching out to Nova Fresh International. Milton A. Johnson will review your details and respond promptly.';
+            formFeedback.innerHTML = '<strong>Message Sent Successfully!</strong><br />Thank you for reaching out. Milton A. Johnson will get back to you shortly.';
           }
           tradeForm.reset();
         } else {
-          throw new Error('Submission endpoint returned status ' + response.status);
+          throw new Error('Form submission returned status ' + response.status);
         }
       } catch (error) {
         console.error('Form submission error:', error);
         if (formFeedback) {
           formFeedback.className = 'form-feedback error';
           formFeedback.style.display = 'block';
-          formFeedback.innerHTML = '<strong>Submission Failed</strong><br />Unable to send your inquiry automatically. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit;">mjohnson@novafreshintl.com</a> or call +1 562 201 7771.';
+          formFeedback.innerHTML = '<strong>Submission Failed.</strong><br />Unable to send your message right now. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit;">mjohnson@novafreshintl.com</a> or call +1 562 201 7771.';
         }
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
+          submitBtn.innerHTML = originalBtnText;
         }
       }
     });
   }
 
   // 3. Highlight Active Navigation Link on Scroll
-  const sectionBars = document.querySelectorAll('.section-bar-header[id]');
+  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
   window.addEventListener('scroll', () => {
     let current = '';
-    const scrollPosition = window.scrollY + 140;
+    const scrollPosition = window.scrollY + 120;
 
-    sectionBars.forEach(section => {
+    sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      if (scrollPosition >= sectionTop) {
+      const sectionHeight = section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
       }
     });
