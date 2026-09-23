@@ -1,10 +1,12 @@
 /**
- * Nova Fresh International — Application Logic
- * Vanilla JS for Mobile Drawer Toggle, FormSubmit AJAX Handling, and Active Scroll Highlighting
+ * Nova Fresh International — Master Application Logic
+ * International Sourcing & Market Development
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Drawer Toggle
+  // ------------------------------------------------------------------------
+  // 1. Mobile Navigation Drawer Toggle
+  // ------------------------------------------------------------------------
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
 
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    const mobileLinks = mobileDrawer.querySelectorAll('.nav-link');
+    const mobileLinks = mobileDrawer.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileDrawer.classList.remove('open');
@@ -29,20 +31,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Functional AJAX Form Submission with FormSubmit API
+  // ------------------------------------------------------------------------
+  // 2. Interactive Role Tab Switcher in Inquiry Form
+  // ------------------------------------------------------------------------
+  const tabSupplier = document.getElementById('tab-supplier');
+  const tabBuyer = document.getElementById('tab-buyer');
+  const tabGeneral = document.getElementById('tab-general');
+  const formTitle = document.getElementById('form-title');
+  const formSubtitle = document.getElementById('form-subtitle');
+  const inquiryTypeInput = document.getElementById('inquiry_type');
+  const inquiryMessage = document.getElementById('inquiry-message');
+  const labelProductInterest = document.getElementById('label-product-interest');
+
+  const roleConfigs = {
+    supplier: {
+      title: 'Tell Us About Your Product',
+      subtitle: 'Share details about your production, export origins, and target international markets.',
+      placeholder: 'Please describe your products, current harvest/processing volume, export origins, and target buyer markets...',
+      productLabel: 'Product / Crop Sourcing Category *',
+      typeValue: 'Supplier / Exporter Inquiry'
+    },
+    buyer: {
+      title: "Tell Us What You're Looking For",
+      subtitle: 'Specify your product requirements, required volumes, delivery timelines, and target destinations.',
+      placeholder: 'Please describe the products you are seeking to source, required specifications, volume needs, and timeline...',
+      productLabel: 'Required Product / Supply Category *',
+      typeValue: 'Buyer / Importer Sourcing Inquiry'
+    },
+    general: {
+      title: 'Get in Touch with Nova Fresh',
+      subtitle: 'Have a specific commercial inquiry, inspection request, or partnership opportunity? Let us know.',
+      placeholder: 'How can Nova Fresh International assist your international trade operations?',
+      productLabel: 'Area of Interest / Opportunity *',
+      typeValue: 'General / Partnership Inquiry'
+    }
+  };
+
+  function setInquiryRole(role) {
+    const config = roleConfigs[role] || roleConfigs.supplier;
+
+    // Toggle active classes on tab buttons
+    [tabSupplier, tabBuyer, tabGeneral].forEach(tab => {
+      if (tab) {
+        const isMatch = tab.getAttribute('data-role') === role;
+        tab.classList.toggle('active', isMatch);
+        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      }
+    });
+
+    // Update text content
+    if (formTitle) formTitle.textContent = config.title;
+    if (formSubtitle) formSubtitle.textContent = config.subtitle;
+    if (inquiryMessage) inquiryMessage.setAttribute('placeholder', config.placeholder);
+    if (labelProductInterest) labelProductInterest.textContent = config.productLabel;
+    if (inquiryTypeInput) inquiryTypeInput.value = config.typeValue;
+  }
+
+  if (tabSupplier) tabSupplier.addEventListener('click', () => setInquiryRole('supplier'));
+  if (tabBuyer) tabBuyer.addEventListener('click', () => setInquiryRole('buyer'));
+  if (tabGeneral) tabGeneral.addEventListener('click', () => setInquiryRole('general'));
+
+  // ------------------------------------------------------------------------
+  // 3. Section CTA & Opportunity Buttons Triggering Form State
+  // ------------------------------------------------------------------------
+  const inquiryTriggers = document.querySelectorAll('.js-set-inquiry');
+  inquiryTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const role = btn.getAttribute('data-inquiry-role');
+      if (role) {
+        setInquiryRole(role);
+      }
+    });
+  });
+
+  const opportunityTriggers = document.querySelectorAll('.js-set-opportunity');
+  opportunityTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      setInquiryRole('buyer');
+      const product = btn.getAttribute('data-product');
+      const productSelect = document.getElementById('product-interest');
+      if (productSelect && product) {
+        for (let i = 0; i < productSelect.options.length; i++) {
+          if (productSelect.options[i].text.includes(product) || productSelect.options[i].value.includes(product)) {
+            productSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    });
+  });
+
+  // ------------------------------------------------------------------------
+  // 4. AJAX Form Submission with FormSubmit API
+  // ------------------------------------------------------------------------
   const tradeForm = document.getElementById('trade-inquiry-form');
   const formFeedback = document.getElementById('form-feedback');
 
   if (tradeForm) {
     tradeForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const submitBtn = tradeForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn ? submitBtn.innerHTML : '<span>Send Message to Milton</span>';
-      
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '<span>Send Inquiry to Milton A. Johnson</span>';
+
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Sending Message...</span>';
+        submitBtn.innerHTML = '<span>Sending Inquiry...</span>';
       }
 
       if (formFeedback) {
@@ -62,12 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            _subject: 'New Inquiry - Nova Fresh International',
+            _subject: `Trade Inquiry (${data.inquiry_type || 'B2B Trade'}) - ${data.name || 'Anonymous'} [${data.company || 'N/A'}]`,
             _captcha: 'false',
+            inquiry_type: data.inquiry_type,
             name: data.name,
             company: data.company,
             email: data.email,
             phone: data.phone || 'N/A',
+            product_interest: data.product_interest || 'N/A',
+            country_region: data.region || 'N/A',
             message: data.message
           })
         });
@@ -76,18 +173,20 @@ document.addEventListener('DOMContentLoaded', () => {
           if (formFeedback) {
             formFeedback.className = 'form-feedback success';
             formFeedback.style.display = 'block';
-            formFeedback.innerHTML = '<strong>Message Sent Successfully!</strong><br />Thank you for reaching out. Milton A. Johnson will get back to you shortly.';
+            formFeedback.innerHTML = '<strong>Inquiry Submitted Successfully!</strong><br />Thank you for reaching out. Milton A. Johnson will review your inquiry and follow up shortly.';
           }
           tradeForm.reset();
+          // Reset hidden role
+          if (inquiryTypeInput) inquiryTypeInput.value = 'Supplier / Exporter Inquiry';
         } else {
-          throw new Error('Form submission returned status ' + response.status);
+          throw new Error('Server returned response code ' + response.status);
         }
       } catch (error) {
-        console.error('Form submission error:', error);
+        console.error('Inquiry submission error:', error);
         if (formFeedback) {
           formFeedback.className = 'form-feedback error';
           formFeedback.style.display = 'block';
-          formFeedback.innerHTML = '<strong>Submission Failed.</strong><br />Unable to send your message right now. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit;">mjohnson@novafreshintl.com</a> or call +1 562 201 7771.';
+          formFeedback.innerHTML = '<strong>Submission Notice:</strong><br />We encountered an issue submitting the form. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit; font-weight: bold;">mjohnson@novafreshintl.com</a> or message via WhatsApp at <a href="https://wa.me/17146249974" style="text-decoration: underline; color: inherit; font-weight: bold;">+1 714.624.9974</a>.';
         }
       } finally {
         if (submitBtn) {
@@ -98,13 +197,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Highlight Active Navigation Link on Scroll
+  // ------------------------------------------------------------------------
+  // 5. Active Scroll Navigation Highlighting
+  // ------------------------------------------------------------------------
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.header .nav-link');
 
-  window.addEventListener('scroll', () => {
+  function updateActiveNav() {
     let current = '';
-    const scrollPosition = window.scrollY + 120;
+    const scrollPosition = window.scrollY + 140;
 
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
@@ -116,9 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (current && link.getAttribute('href') === `#${current}`) {
+      const href = link.getAttribute('href');
+      if (current && href === `#${current}`) {
         link.classList.add('active');
       }
     });
-  });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 });
