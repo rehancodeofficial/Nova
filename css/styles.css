@@ -432,12 +432,12 @@ button, input, textarea, select {
   font-weight: 400;
 }
 
-/* Hero Dual-Action Gateways */
+/* Hero Gateways */
 .hero-action-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  max-width: 860px;
+  max-width: 1040px;
   margin: 0 auto;
   text-align: left;
 }
@@ -695,8 +695,8 @@ button, input, textarea, select {
 
 .dual-pathway-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   position: relative;
 }
 
@@ -972,6 +972,33 @@ button, input, textarea, select {
   font-size: 0.88rem;
   color: var(--color-text-muted);
   line-height: 1.55;
+}
+
+.opportunities-subsection {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border-light);
+  margin-bottom: 40px;
+}
+
+.opportunities-sub-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 36px auto;
+}
+
+.opportunities-sub-title {
+  font-family: var(--font-family-heading);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.opportunities-sub-desc {
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
 }
 
 .scope-statement-banner {

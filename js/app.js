@@ -46,24 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const roleConfigs = {
     supplier: {
       title: 'Tell Us About Your Product',
-      subtitle: 'Share details about your production, export origins, and target international markets.',
-      placeholder: 'Please describe your products, current harvest/processing volume, export origins, and target buyer markets...',
-      productLabel: 'Product / Crop Sourcing Category *',
-      typeValue: 'Supplier / Exporter Inquiry'
+      subtitle: 'Share details about your product, export origins, and target international markets.',
+      placeholder: 'Please describe your products, current harvest or processing volume, export origins, and target buyer markets...',
+      productLabel: 'Product Category / Opportunity *',
+      typeValue: 'I Have a Product (Supplier / Exporter)'
     },
     buyer: {
-      title: "Tell Us What You're Looking For",
+      title: "Tell Us What You Need",
       subtitle: 'Specify your product requirements, required volumes, delivery timelines, and target destinations.',
       placeholder: 'Please describe the products you are seeking to source, required specifications, volume needs, and timeline...',
       productLabel: 'Required Product / Supply Category *',
-      typeValue: 'Buyer / Importer Sourcing Inquiry'
+      typeValue: 'I Need a Product (Buyer / Importer)'
     },
     general: {
-      title: 'Get in Touch with Nova Fresh',
-      subtitle: 'Have a specific commercial inquiry, inspection request, or partnership opportunity? Let us know.',
-      placeholder: 'How can Nova Fresh International assist your international trade operations?',
+      title: 'Market Development & Connection Inquiry',
+      subtitle: 'Have a product to introduce to a new international market, an inspection request, or commercial partnership? Let us know.',
+      placeholder: 'How can Nova Fresh International assist your international market-development operations?',
       productLabel: 'Area of Interest / Opportunity *',
-      typeValue: 'General / Partnership Inquiry'
+      typeValue: 'Market Development / Connection Inquiry'
     }
   };
 
