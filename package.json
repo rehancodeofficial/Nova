@@ -1,7 +1,7 @@
 {
-  "name": "novafresh-landing",
+  "name": "Nova Fresh-landing",
   "version": "1.0.0",
-  "description": "Novafresh International — International Sourcing & Market Development  landing page",
+  "description": "Nova Fresh International — International Sourcing & Market Development  landing page",
   "private": true,
   "type": "module",
   "scripts": {
