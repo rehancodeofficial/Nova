@@ -1,6 +1,6 @@
 /**
  * Nova Fresh International — Master Application Logic
- * International Sourcing & Market Development
+ * International Sourcing & MARKET DEVELOPMENT 
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
       typeValue: 'I Need a Product (Buyer / Importer)'
     },
     general: {
-      title: 'Market Development & Connection Inquiry',
+      title: 'MARKET DEVELOPMENT  & Connection Inquiry',
       subtitle: 'Have a product to introduce to a new international market, an inspection request, or commercial partnership? Let us know.',
       placeholder: 'How can Nova Fresh International assist your international market-development operations?',
       productLabel: 'Area of Interest / Opportunity *',
-      typeValue: 'Market Development / Connection Inquiry'
+      typeValue: 'MARKET DEVELOPMENT  / Connection Inquiry'
     }
   };
 

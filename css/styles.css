@@ -1,37 +1,53 @@
 /* ==========================================================================
    Nova Fresh International — Master Stylesheet
-   International Sourcing & Market Development
+   International Sourcing & MARKET DEVELOPMENT 
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Brand Palette - Deep, Professional & Authoritative B2B */
-  --color-primary-navy: #0F2438;     /* Deep International Navy */
-  --color-primary-dark: #081C24;     /* Deep Charcoal Slate */
-  --color-primary-teal: #0E5A47;     /* Deep Evergreen Forest */
-  --color-primary-accent: #1B7A60;   /* Vibrant Sourcing Green */
-  --color-primary-light: #EBF7F2;    /* Soft Mint/Sage Tint */
-  --color-accent-amber: #D97706;    /* Warm Harvest Amber */
-  --color-accent-blue: #1D4ED8;     /* Global Logistics Blue */
+  --color-primary-navy: #0F2438;
+  /* Deep International Navy */
+  --color-primary-dark: #081C24;
+  /* Deep Charcoal Slate */
+  --color-primary-teal: #0E5A47;
+  /* Deep Evergreen Forest */
+  --color-primary-accent: #1B7A60;
+  /* Vibrant Sourcing Green */
+  --color-primary-light: #EBF7F2;
+  /* Soft Mint/Sage Tint */
+  --color-accent-amber: #D97706;
+  /* Warm Harvest Amber */
+  --color-accent-blue: #1D4ED8;
+  /* Global Logistics Blue */
 
   /* Neutral Surface Backgrounds */
-  --color-bg-white: #FFFFFF;
-  --color-bg-surface: #F8FAF9;      /* Crisp Warm Off-White */
-  --color-bg-alt: #F1F5F3;          /* Subtle Slate-Sage Background */
-  --color-bg-subtle: #FAFCFA;
+  --color-bg-white: #F4F8F6;
+  --color-bg-surface: #EBF3EF;
+  /* Soft Fresh Mint-Sage Tint */
+  --color-bg-alt: #E3EDE8;
+  /* Bright Fresh Slate-Sage Background */
+  --color-bg-subtle: #F0F6F3;
   --color-bg-dark-card: #152E38;
 
   /* Typography Colors */
-  --color-text-main: #1A2421;       /* Deep Charcoal for readable body */
-  --color-text-muted: #4A5B53;      /* Muted Neutral Green-Gray */
-  --color-text-light: #94A3B8;      /* Secondary Light Gray */
-  --color-text-inverse: #FFFFFF;    /* Pure White */
+  --color-text-main: #1A2421;
+  /* Deep Charcoal for readable body */
+  --color-text-muted: #4A5B53;
+  /* Muted Neutral Green-Gray */
+  --color-text-light: #94A3B8;
+  /* Secondary Light Gray */
+  --color-text-inverse: #FFFFFF;
+  /* Pure White */
 
   /* Borders & Dividers */
-  --color-border-light: #E2E8E4;    /* Light Subtle Border */
-  --color-border-medium: #CBD5D0;   /* Defined Border */
-  --color-border-brand: #A3D9C9;    /* Brand Green Border */
+  --color-border-light: #E2E8E4;
+  /* Light Subtle Border */
+  --color-border-medium: #CBD5D0;
+  /* Defined Border */
+  --color-border-brand: #A3D9C9;
+  /* Brand Green Border */
 
   /* Typography */
   --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -61,7 +77,9 @@
 /* --------------------------------------------------------------------------
    Reset & Base Styles
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -95,7 +113,10 @@ img {
   display: block;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -370,8 +391,8 @@ button, input, textarea, select {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(135deg, rgba(8, 28, 36, 0.88) 0%, rgba(15, 36, 56, 0.80) 50%, rgba(14, 90, 71, 0.74) 100%);
+  background-image:
+    linear-gradient(135deg, rgba(8, 28, 36, 0.65) 0%, rgba(15, 36, 56, 0.40) 50%, rgba(14, 90, 71, 0.30) 100%);
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -1486,6 +1507,8 @@ button, input, textarea, select {
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .inquiry-tab-btn.active {
@@ -1671,6 +1694,7 @@ button, input, textarea, select {
    Responsive Media Queries
    -------------------------------------------------------------------------- */
 @media (max-width: 1100px) {
+
   .product-scope-grid,
   .opportunities-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1715,18 +1739,23 @@ button, input, textarea, select {
   .header-container {
     padding: 0 20px;
   }
+
   .nav-menu {
     gap: 13px;
   }
+
   .nav-link {
     font-size: 0.79rem;
   }
+
   .brand-title {
     font-size: 1.05rem;
   }
+
   .brand-subtitle {
     font-size: 0.60rem;
   }
+
   .nav-cta {
     padding: 7px 13px;
     font-size: 0.78rem;
