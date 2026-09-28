@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (formFeedback) {
           formFeedback.className = 'form-feedback error';
           formFeedback.style.display = 'block';
-          formFeedback.innerHTML = '<strong>Submission Notice:</strong><br />We encountered an issue submitting the form. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit; font-weight: bold;">mjohnson@novafreshintl.com</a> or message via WhatsApp at <a href="https://wa.me/17146249974" style="text-decoration: underline; color: inherit; font-weight: bold;">+1 714.624.9974</a>.';
+          formFeedback.innerHTML = '<strong>Submission Notice:</strong><br />We encountered an issue submitting the form. Please email Milton A. Johnson directly at <a href="mailto:mjohnson@novafreshintl.com" style="text-decoration: underline; color: inherit; font-weight: bold;">mjohnson@novafreshintl.com</a> or message via WhatsApp at <a href="https://wa.me/17146249974" style="text-decoration: underline; color: inherit; font-weight: bold;">+1-714-624-9974</a>.';
         }
       } finally {
         if (submitBtn) {
