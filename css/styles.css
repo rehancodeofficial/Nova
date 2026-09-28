@@ -9,45 +9,45 @@
   /* Brand Palette - Deep, Professional & Authoritative B2B */
   --color-primary-navy: #0F2438;
   /* Deep International Navy */
-  --color-primary-dark: #081C24;
+  --color-primary-dark: #0D1F2D;
   /* Deep Charcoal Slate */
   --color-primary-teal: #0E5A47;
   /* Deep Evergreen Forest */
   --color-primary-accent: #1B7A60;
   /* Vibrant Sourcing Green */
-  --color-primary-light: #EBF7F2;
-  /* Soft Mint/Sage Tint */
+  --color-primary-light: #F0FAF6;
+  /* Very subtle green tint — for icon backgrounds only */
   --color-accent-amber: #D97706;
   /* Warm Harvest Amber */
   --color-accent-blue: #1D4ED8;
   /* Global Logistics Blue */
 
-  /* Neutral Surface Backgrounds */
-  --color-bg-white: #F4F8F6;
-  --color-bg-surface: #EBF3EF;
-  /* Soft Fresh Mint-Sage Tint */
-  --color-bg-alt: #E3EDE8;
-  /* Bright Fresh Slate-Sage Background */
-  --color-bg-subtle: #F0F6F3;
-  --color-bg-dark-card: #152E38;
+  /* Neutral Surface Backgrounds — white-space first */
+  --color-bg-white: #FFFFFF;
+  --color-bg-surface: #F8F9FA;
+  /* Clean light neutral — almost white */
+  --color-bg-alt: #F2F4F3;
+  /* Very light neutral gray */
+  --color-bg-subtle: #FAFBFA;
+  --color-bg-dark-card: #0D1F2D;
 
   /* Typography Colors */
-  --color-text-main: #1A2421;
-  /* Deep Charcoal for readable body */
-  --color-text-muted: #4A5B53;
-  /* Muted Neutral Green-Gray */
-  --color-text-light: #94A3B8;
-  /* Secondary Light Gray */
+  --color-text-main: #18211E;
+  /* Deep near-black for strong readability */
+  --color-text-muted: #52635B;
+  /* Neutral gray-green for secondary text */
+  --color-text-light: #8A9B94;
+  /* Light muted for tertiary */
   --color-text-inverse: #FFFFFF;
   /* Pure White */
 
   /* Borders & Dividers */
-  --color-border-light: #E2E8E4;
-  /* Light Subtle Border */
-  --color-border-medium: #CBD5D0;
-  /* Defined Border */
-  --color-border-brand: #A3D9C9;
-  /* Brand Green Border */
+  --color-border-light: #E8ECEB;
+  /* Clean neutral light border */
+  --color-border-medium: #CDD5D1;
+  /* Defined neutral border */
+  --color-border-brand: #52B788;
+  /* Deep green brand border accent */
 
   /* Typography */
   --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -392,7 +392,7 @@ select {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(135deg, rgba(8, 28, 36, 0.65) 0%, rgba(15, 36, 56, 0.40) 50%, rgba(14, 90, 71, 0.30) 100%);
+    linear-gradient(160deg, rgba(8, 28, 36, 0.42) 0%, rgba(15, 36, 56, 0.22) 55%, rgba(14, 90, 71, 0.18) 100%);
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -404,8 +404,7 @@ select {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
+  /* Removed dot pattern for cleaner look */
   z-index: 2;
   pointer-events: none;
 }
@@ -424,7 +423,7 @@ select {
   gap: 8px;
   background-color: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(8px);
-  color: #A3D9C9;
+  color: #ececec;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.09em;
@@ -562,12 +561,12 @@ select {
 }
 
 .hero-card-btn-buyer {
-  background-color: #FFFFFF;
-  color: var(--color-primary-navy);
+  background-color: #1B7A60;
+  color: #FFFFFF;
 }
 
 .hero-card-btn-buyer:hover {
-  background-color: #EBF7F2;
+  background-color: #2D9A7A;
 }
 
 /* --------------------------------------------------------------------------
@@ -585,7 +584,7 @@ select {
 }
 
 .section-tint {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-bg-white);
 }
 
 .section-dark {
@@ -735,7 +734,7 @@ select {
 }
 
 .pathway-card {
-  background-color: var(--color-bg-surface);
+  background-color: #FFFFFF;
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
   padding: 36px 32px;
@@ -743,6 +742,7 @@ select {
   flex-direction: column;
   justify-content: space-between;
   transition: all var(--transition-normal);
+  box-shadow: var(--shadow-xs);
 }
 
 .pathway-card:hover {
@@ -1036,14 +1036,15 @@ select {
 }
 
 .scope-statement-banner {
-  background-color: var(--color-primary-light);
-  border: 1px solid var(--color-border-brand);
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border-light);
+  border-left: 4px solid var(--color-primary-teal);
   border-radius: var(--radius-md);
   padding: 20px 28px;
   text-align: center;
   font-size: 0.98rem;
   font-weight: 600;
-  color: var(--color-primary-teal);
+  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
