@@ -226,4 +226,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', updateActiveNav, { passive: true });
   updateActiveNav();
+
+  // ------------------------------------------------------------------------
+  // 6. FAQ Accordion Handler
+  // ------------------------------------------------------------------------
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const faqItem = question.parentElement;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all other items for clean single accordion
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+      
+      if (!isActive) {
+        faqItem.classList.add('active');
+      }
+    });
+  });
+
+  // ------------------------------------------------------------------------
+  // 7. Inspection Service CTA Form Prefill Handler
+  // ------------------------------------------------------------------------
+  const inspectionTriggers = document.querySelectorAll('.js-set-inspection');
+  inspectionTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const serviceType = btn.getAttribute('data-service');
+      const productSelect = document.getElementById('product-interest');
+      const messageInput = document.getElementById('inquiry-message');
+      
+      if (productSelect && serviceType) {
+        for (let i = 0; i < productSelect.options.length; i++) {
+          if (productSelect.options[i].text.includes(serviceType) || productSelect.options[i].value.includes(serviceType)) {
+            productSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      
+      if (messageInput && serviceType) {
+        if (serviceType.includes('Japan')) {
+          messageInput.value = 'Requesting independent commercial destination produce inspection in Japan.\n\nShipment Details:\n- Commodity / Fruit:\n- Origin Country:\n- Target Arrival Date:\n- Port / Location in Japan:\n- Specific Concerns or Requirements:';
+        } else if (serviceType.includes('Chile')) {
+          messageInput.value = 'Requesting independent commercial pre-shipment produce inspection in Chile.\n\nShipment Details:\n- Commodity / Fruit:\n- Packing / Loading Facility Location in Chile:\n- Expected Shipment Date:\n- Destination Country:\n- Specific Concerns or Requirements:';
+        }
+      }
+    });
+  });
 });
