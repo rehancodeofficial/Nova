@@ -273,4 +273,99 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ------------------------------------------------------------------------
+  // 8. Multi-Language Dropdown & Translation System
+  // ------------------------------------------------------------------------
+  const langDropdown = document.getElementById('lang-selector');
+  if (langDropdown) {
+    const langBtn = langDropdown.querySelector('.lang-btn');
+    const currentFlag = langDropdown.querySelector('.lang-flag-current');
+    const options = langDropdown.querySelectorAll('.lang-option');
+
+    // Toggle dropdown open/close
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.contains('open');
+      langDropdown.classList.toggle('open', !isOpen);
+      langBtn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Helper: set Google Translate cookie across all path levels & domains
+    function setGoogleTranslateCookie(langCode) {
+      const cookieVal = '/en/' + langCode;
+      const host = window.location.hostname;
+      
+      document.cookie = `googtrans=${cookieVal}; path=/;`;
+      document.cookie = `googtrans=${cookieVal}; path=/; domain=${host};`;
+      if (host.includes('.')) {
+        const rootDomain = '.' + host.split('.').slice(-2).join('.');
+        document.cookie = `googtrans=${cookieVal}; path=/; domain=${rootDomain};`;
+      }
+    }
+
+    // Helper: trigger Google Translate select change if iframe/widget is in DOM
+    function triggerGoogleTranslate(langCode) {
+      setGoogleTranslateCookie(langCode);
+
+      const gtCombo = document.querySelector('.goog-te-combo');
+      if (gtCombo) {
+        gtCombo.value = langCode;
+        gtCombo.dispatchEvent(new Event('change'));
+      } else {
+        // Reload page to let Google Translate script read cookie and auto-translate
+        window.location.reload();
+      }
+    }
+
+    // Read stored language from cookie or localStorage
+    function getSavedLang() {
+      const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+      if (match && match[1]) return match[1];
+      return localStorage.getItem('selected_language') || 'en';
+    }
+
+    const initialLang = getSavedLang();
+    const activeOption = Array.from(options).find(opt => opt.getAttribute('data-lang') === initialLang);
+    if (activeOption) {
+      const flagImg = activeOption.querySelector('img');
+      if (flagImg && currentFlag) {
+        currentFlag.src = flagImg.src;
+        currentFlag.alt = activeOption.getAttribute('title') || 'Language';
+      }
+      activeOption.classList.add('active');
+    }
+
+    // Handle language selection click
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const langCode = opt.getAttribute('data-lang');
+        const flagImg = opt.querySelector('img');
+
+        // Update active UI
+        options.forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+
+        if (flagImg && currentFlag) {
+          currentFlag.src = flagImg.src;
+          currentFlag.alt = opt.getAttribute('title') || 'Language';
+        }
+
+        langDropdown.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+        localStorage.setItem('selected_language', langCode);
+
+        // Perform translation
+        triggerGoogleTranslate(langCode);
+      });
+    });
+  }
 });
