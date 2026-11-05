@@ -344,6 +344,21 @@ document.addEventListener('DOMContentLoaded', () => {
       activeOption.classList.add('active');
     }
 
+    // Handle mobile drawer language buttons
+    const mobileLangBtns = document.querySelectorAll('.mobile-lang-btn');
+    mobileLangBtns.forEach(btn => {
+      const bLang = btn.getAttribute('data-lang');
+      if (bLang === initialLang) {
+        btn.classList.add('active');
+      }
+      btn.addEventListener('click', () => {
+        mobileLangBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        localStorage.setItem('selected_language', bLang);
+        triggerGoogleTranslate(bLang);
+      });
+    });
+
     // Handle language selection click
     options.forEach(opt => {
       opt.addEventListener('click', () => {

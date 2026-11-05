@@ -85,7 +85,7 @@
         </ul>
       </nav>
 
-      <div class="nav-actions">
+      <div class="header-right-actions">
         <!-- Language Selector Dropdown -->
         <div class="lang-selector-dropdown" id="lang-selector">
           <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Translate Website">
@@ -110,27 +110,46 @@
           </div>
         </div>
 
-        <a href="inspection.html" class="nav-cta">
-          <span>Produce Inspection</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </a>
-      </div>
+        <div class="nav-actions">
+          <a href="inspection.html" class="nav-cta">
+            <span>Produce Inspection</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
 
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Mobile Navigation Drawer -->
   <div class="mobile-nav-drawer" id="mobile-drawer">
+    <div class="mobile-lang-bar">
+      <span class="mobile-lang-label">Language:</span>
+      <div class="mobile-lang-options">
+        <button class="mobile-lang-btn" data-lang="en">
+          <img src="https://flagcdn.com/w40/us.png" alt="English" />
+          <span>EN</span>
+        </button>
+        <button class="mobile-lang-btn" data-lang="es">
+          <img src="https://flagcdn.com/w40/es.png" alt="Español" />
+          <span>ES</span>
+        </button>
+        <button class="mobile-lang-btn" data-lang="ja">
+          <img src="https://flagcdn.com/w40/jp.png" alt="日本語" />
+          <span>JA</span>
+        </button>
+      </div>
+    </div>
     <ul class="mobile-menu-links">
       <li><a href="#hero" class="nav-link">Home</a></li>
       <li><a href="#what-we-do" class="nav-link">What We Do</a></li>
